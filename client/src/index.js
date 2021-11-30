@@ -4,9 +4,29 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { getTokenFromResponse } from './services/spotifyAuth';
+import SpotifyWebApi from 'spotify-web-api-node';
+
+
+const spotifyApi = new SpotifyWebApi({
+  ClientId: "25ecacddc59e4a3aadede77c0f93cf43", 
+})
+
+
+var hash = getTokenFromResponse();
+window.location.hash = "";
+
+const _token = hash.access_token;
+
+if (_token) {
+  var token = _token;
+  localStorage.setItem("token", token)
+  spotifyApi.setAccessToken(_token)
+}
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App token={token} spotifyApi={spotifyApi}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

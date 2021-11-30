@@ -6,49 +6,51 @@ import { getTokenFromResponse } from './services/spotifyAuth';
 import SpotifyWebApi from 'spotify-web-api-node';
 
 import Home from './pages/Home';
+import Map from './pages/Map';
 import ArtistProfile from './pages/ArtistProfile';
+import Nav from './components/Nav';
+import Playlists from './pages/Playlists';
 
 
 function App(props) {
 
-  const spotifyApi = new SpotifyWebApi({
-    ClientId: "25ecacddc59e4a3aadede77c0f93cf43", 
-  })
-
-  const [token, setToken] = useState(null);
- 
+  const token = props.token
+  const spotifyApi = props.spotifyApi
 
   useEffect(() => {
-    var hash = getTokenFromResponse();
-    window.location.hash = "";
-
-    const _token = hash.access_token;
-    console.log(_token)
-
-    if (_token) {
-      setToken(_token);
-      spotifyApi.setAccessToken(_token)
-    }
-    
-  }, [])
-
- 
-
-
+    console.log(token, spotifyApi)
+  })
 
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
+      <Nav />
+        <Routes>       
           <Route 
-            exact path="/" 
+            path="/" 
             element={<Home  token={token} spotifyApi={spotifyApi} />}           
           />
 
           <Route 
-            exact path="/profile" 
-            element={<ArtistProfile token={token} spotifyApi={spotifyApi} />}         
+            path="/profile" 
+            element={ <ArtistProfile token={token} spotifyApi={spotifyApi} />}        
           />
+
+          <Route 
+            exact path="/addToPlaylist/:track"
+            element={<Playlists token={token} spotifyApi={spotifyApi} />}
+          />
+
+          <Route 
+            exact path="/map"
+            element={<Map token={token} spotifyApi={spotifyApi} />}
+          />
+
+          <Route 
+            exact path="/map/:artist"
+            element={<ArtistProfile token={token} spotifyApi={spotifyApi} />}
+          />
+
         </Routes>
       </BrowserRouter>
     </div>

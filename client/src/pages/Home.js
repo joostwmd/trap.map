@@ -6,6 +6,17 @@ function Home(props) {
 
     props.spotifyApi.setAccessToken(props.token)
 
+        useEffect(() => {
+        console.log(props)
+        // spotifyApi.setAccessToken(token)
+        // spotifyApi.getMe()
+        //     .then(function(data) {
+        //         if(data.body.product === "premium"){
+        //             setHasPremium(true)
+        //         }
+        //     })
+      }, [])
+
     const [id, setId] = useState("")
    
     const test = () => {

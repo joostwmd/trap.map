@@ -9,7 +9,9 @@ const clientId = "25ecacddc59e4a3aadede77c0f93cf43";
 const scopes = [
     "streaming",
     "playlist-modify-public",
+    "playlist-read-private",
     "user-follow-modify",
+    "user-follow-read",
     "ugc-image-upload",
     "user-read-email",
     "user-read-private",
@@ -20,7 +22,6 @@ const scopes = [
   ];
   
   export const getTokenFromResponse = () => {
-    console.log(window.location)
     return window.location.hash
       .substring(1)
       .split("&")
