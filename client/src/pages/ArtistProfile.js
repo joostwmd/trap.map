@@ -53,49 +53,63 @@ function ArtistProfile(props) {
     const API_URL = 'http://localhost:5005'
     const artistDbId = window.location.pathname.split("/")[2]
 
-    const getArtist = () => {
-        const res = axios.get(`${API_URL}/api/map/${artistDbId}`)
-        .then(res => {
-            console.log("spotifyId", res.data.spotifyId)
-            setArtistSpotifyId(res.data.spotifyId)
-            return res.data.spotifyId
+    // const getArtist = () => {
+    //     const res = axios.get(`${API_URL}/api/map/${artistDbId}`)
+    //     .then(res => {
+    //         console.log("spotifyId", res.data.spotifyID)
+    //         // setArtistSpotifyId(res.data.spotifyId)
+    //         return res.data.spotifyId
             
-    })
-    return res
-}
+    // })
+    //     return res
+    // }
 
-    const catchSpotifyID = async () => {
-        let res = await getArtist()
-        
-        return res
-    }
+    // const catchSpotifyID = async () => {
+    //     let res = await getArtist()
+    //     console.log("x", res)
+    //     return res
+    // }
 
+    
     useEffect(() => {
-        catchSpotifyID()
-        .then(spotifyId => {
-            setArtistSpotifyId(spotifyId)
-            // getArtistInfo(token, spotifyId)
-            //     .then(info => {
-            //         setArtistInfo(info)
-            //         console.log("info", info)
-            //     })
 
-            getArtistTopTracks(token, spotifyId)
-                .then(tracks => {
-                    setTopTracks(tracks)
-                    console.log("tracks", tracks)
-                })
+        axios.get(`${API_URL}/api/map/${artistDbId}`)
+            .then(res => {
+                var spotifyId = res.data.spotifyID
+                console.log(spotifyId)
+            })
+        
+        
+        
+        //catchSpotifyID()
+        // .then(spotifyId => {
+        //     setArtistSpotifyId(spotifyId)
+        //     // getArtistInfo(token, spotifyId)
+        //     //     .then(info => {
+        //     //         setArtistInfo(info)
+        //     //         console.log("info", info)
+        //     //     })
+
+        //     getArtistTopTracks(token, spotifyId)
+        //         .then(tracks => {
+        //             setTopTracks(tracks)
+        //             console.log("tracks", tracks)
+        //         })
             
-            // getArtistAlbums(token, spotifyId)
-            //     .then(albums => {
-            //         setAlbums(albums)
-            //         console.log("albums", albums)
-            //     })
-        }) 
-}, [])
+        //     // getArtistAlbums(token, spotifyId)
+        //     //     .then(albums => {
+        //     //         setAlbums(albums)
+        //     //         console.log("albums", albums)
+        //     //     })
+        // }) 
+    }, [])
 
 
-
+    return (
+        <div>
+            test
+        </div>
+    )
  
     if (token === null){
         return (
@@ -138,7 +152,7 @@ function ArtistProfile(props) {
             <div>
                 <h1>spotify free</h1>
 
-                <ArtistProfileHeader token={token} spotifyApi={spotifyApi} artistSpotifyId={artistSpotifyId} catchSpotifyID={catchSpotifyID}/>
+                {/* <ArtistProfileHeader token={token} spotifyApi={spotifyApi} artistSpotifyId={artistSpotifyId} catchSpotifyID={catchSpotifyID}/> */}
 
                 <h3>top tracks</h3>
                 {topTracks.map(track => {

@@ -8,7 +8,8 @@ const artistSchema = new Schema({
     popularity : Number,
     spotifyLink : String,
     tracks : Array,
-    city : String
+    city : String,
+    spotifyID : String
 })
 
 

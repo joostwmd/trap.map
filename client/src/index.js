@@ -3,31 +3,52 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { CookiesProvider } from 'react-cookie';
+import { useCookies } from 'react-cookie'
 
-import { getTokenFromResponse } from './services/spotifyAuth';
+// import { getTokenFromResponse } from '/Users/joostwindmoller/Desktop/trap.map/trap.map/routes/spotifyApi.js';
 import SpotifyWebApi from 'spotify-web-api-node';
+import axios from 'axios';
 
 
-const spotifyApi = new SpotifyWebApi({
-  ClientId: "25ecacddc59e4a3aadede77c0f93cf43", 
-})
+// const spotifyApi = new SpotifyWebApi({
+//   ClientId: "25ecacddc59e4a3aadede77c0f93cf43", 
+// })
 
 
-var hash = getTokenFromResponse();
-window.location.hash = "";
 
-const _token = hash.access_token;
 
-if (_token) {
-  var token = _token;
-  localStorage.setItem("token", token)
-  spotifyApi.setAccessToken(_token)
-}
+// function getHashParams() {
+//   var hashParams = {};
+//   var e, r = /([^&;=]+)=?([^&;]*)/g,
+//       q = window.location.hash.substring(1);
+//   while ( e = r.exec(q)) {
+//      hashParams[e[1]] = decodeURIComponent(e[2]);
+//   }
+//   return hashParams;
+// }
+
+// var hash = getHashParams();
+// window.location.hash = "";
+
+// const _token = hash.access_token;
+
+// if (_token) {
+//   var token = _token;
+  
+//   console.log(token)
+//   localStorage.setItem("personal token", token)
+  
+//   //spotifyApi.setAccessToken(_token)
+// }
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App token={token} spotifyApi={spotifyApi}/>
-  </React.StrictMode>,
+  <CookiesProvider>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </CookiesProvider>,
+ 
   document.getElementById('root')
 );
 

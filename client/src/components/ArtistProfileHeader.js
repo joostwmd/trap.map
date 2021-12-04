@@ -78,6 +78,22 @@ function ArtistProfileHeader({token, catchSpotifyID, artistSpotifyId}) {
     //     </div>
     // )
 
+    const renderHeader = (artistInfo) => {
+        if (artistInfo === undefined){
+            return (
+                <div>
+
+                </div>
+            )
+        }
+    }
+
+    // return (
+    //     <div>
+    //         {renderHeader()}
+    //     </div>
+    // )
+
     if (token === null){
         return (
             <div>

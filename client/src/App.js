@@ -1,9 +1,9 @@
 import './App.css';
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import axios from "axios"
-import { getTokenFromResponse } from './services/spotifyAuth';
-import SpotifyWebApi from 'spotify-web-api-node';
+// import axios from "axios"
+// import { getTokenFromResponse } from './services/spotifyAuth';
+// import SpotifyWebApi from 'spotify-web-api-node';
 
 import Home from './pages/Home';
 import Map from './pages/Map';
@@ -13,12 +13,18 @@ import Playlists from './pages/Playlists';
 
 
 function App(props) {
+  
 
   const token = props.token
   const spotifyApi = props.spotifyApi
 
+  
+  
+  
+
   useEffect(() => {
     console.log(token, spotifyApi)
+    
   })
 
   return (
